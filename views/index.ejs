@@ -1,0 +1,48 @@
+<%- include('template/cabecera',{tituloweb: 'Página de inicio', paginaActual: 'inicio'}) %>
+
+<div class="container mt-5 w-25 ">
+
+
+
+ 
+
+
+  <div class="container">
+    <div style="text-align: center;">
+      <img class="mb-4" src=https://getbootstrap.com/docs/5.1/assets/brand/bootstrap-logo.svg alt="" width="72"
+        height="57">
+    </div>
+    <h1>Iniciar Sesión</h1>
+    <form action="/login" method="POST">
+      <input type="email" placeholder="Email" class="form-control my-2" name="usuario">
+      <input type="password" placeholder="Contraseña" class="form-control my-2" name="contrasenia">
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Recordar mis datos
+        </label>
+      </div>
+      <button class="btn btn-primary btn-lg w-100" type="submit">
+        Login
+      </button>
+    </form>
+    <% if (!inicioSesionRespuesta) { %>
+      <div class="alert alert-danger mt-5" role="alert">
+        <%= mensajeLogin %> 
+      </div>
+      <% } else if (inicioSesionRespuesta && mensajeLogin=="logoff") { %>
+        <div class="alert alert-success mt-5" role="alert">
+          Ha cerrado sesiòn correctamente.
+          </div>
+    <% } %>
+  </div>
+
+
+
+
+
+
+
+
+</div>
+
+<%- include('template/footer') %>

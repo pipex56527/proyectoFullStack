@@ -1,0 +1,37 @@
+<%- include('template/cabecera',{tituloweb: 'Personal', paginaActual: 'personal'}) %>
+
+<div class="container">
+  <h1 class="display-5 mt-4">Personal</h1>
+  <a 
+      class="btn btn-success btn-lg w-100 my-4"
+      href="/personalX/crear"
+  > 
+     Crear nueva Persona 
+  </a>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Cédula</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (arrayPersonal.length > 0) { %> <% arrayPersonal.forEach(personal =>
+      { %>
+      <tr>
+        <th scope="row"></th> 
+        <td><%= personal.cedula %></td>
+        <td><%= personal.nombre %></td>
+        <td><%= personal.apellido %></td>
+        <td><a href="/personalX/<%= personal.id %>" class="btn btn-warning w-100">Editar</a></td>
+      </tr>
+      <% }) %> <% } %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('template/footer') %>

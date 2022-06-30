@@ -1,0 +1,51 @@
+<%- include('template/cabecera',{tituloweb: 'Crear nueva Mascota', paginaActual:
+'crear'}) %>
+
+<div class="container">
+  <h1 class="display-4 mt-4 mb-4">Dar de alta nuevo paciente</h1>
+  <form action="/mascotas" method="POST">
+    <input
+      type="text"
+      placeholder="Agregar Nombre"
+      class="form-control my-2"
+      name="nombre"
+    />
+    <input
+      type="text"
+      placeholder="Agregar Descripción"
+      class="form-control my-2"
+      name="descripcion"
+    />
+    <select name="ubicacion" id="ubicacionSelect" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+      <option selected>Agregar Ubicación</option>
+      <% arraySalas.forEach(sala => { %>
+
+      <option value="<%= sala.codigo %> "><%= sala.nombre %> </option>
+      <% }) %>
+    </select>
+    <select name="medicoAtiende" id="medicoAtiendeSelect" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+      <option selected>Agregar un Médico</option>
+      <% arrayPersonas.forEach(persona => { %>
+
+      <option value="<%= persona.cedula %> "><%= persona.nombre %> </option>
+      <% }) %>
+    </select>
+    <input
+      type="text"
+      placeholder="Agregar edad"
+      class="form-control my-2"
+      name="edad"
+    />
+    <input
+      type="text"
+      placeholder="Motivo de Ingreso"
+      class="form-control my-2"
+      name="motivoIngreso"
+    />
+    <button class="btn btn-primary btn-lg w-100 mt-5" type="submit">
+      Agregar Mascota
+    </button>
+  </form>
+</div>
+
+<%- include('template/footer') %>

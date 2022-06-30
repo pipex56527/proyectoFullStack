@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Veterinaria PetSpots</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <% if (paginaInvocada=='inicio') { %>
+               <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+          <% } else { %>
+               <a class="nav-link" href="/">Inicio</a>
+          <% } %>
+        </li>
+        <li class="nav-item">
+          <% if (paginaInvocada=='servicios') { %>
+               <a class="nav-link active" aria-current="page" href="/servicios">Servicios</a>
+          <% } else { %>
+               <a class="nav-link" href="/servicios">Servicios</a>
+          <% } %>
+        </li>
+        <li class="nav-item">
+          <% if (paginaInvocada=='mascotas') { %>
+                <a class="nav-link active" aria-current="page" href="/mascotas">Mascotas</a>
+          <% } else { %>
+                <a class="nav-link" href="/mascotas">Mascotas</a>
+          <% } %>
+        </li>
+        <li class="nav-item">
+          <% if (paginaInvocada=='noexiste') { %>
+                <a class="nav-link active" aria-current="page" href="/noexiste">404</a>
+          <% } else { %>
+                <a class="nav-link" href="/noexiste">404</a>
+          <% } %>
+        </li>
+        <li class="nav-item">
+          <% if (paginaInvocada=='acercade') { %>
+                <a class="nav-link active" aria-current="page" href="/personal">Personal</a>
+          <% } else { %>
+                <a class="nav-link" href="/personal">Personal</a>
+          <% } %>
+        </li>
+        <li class="nav-item">
+          <% if (paginaInvocada=='acercade') { %>
+                <a class="nav-link active" aria-current="page" href="/acercade">Acerca de</a>
+          <% } else { %>
+                <a class="nav-link" href="/acercade">Acerca de</a>
+          <% } %>
+        </li> 
+      </ul>
+<!--       <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> -->
+      <% if (paginaInvocada=='inicio') { %>
+        
+   <% } else { %>
+    <a href="/logoff" type="button" class="btn btn-outline-info">Cerrar Sesión</a>
+   <% } %>
+      
+    </div>
+  </div>
+</nav>

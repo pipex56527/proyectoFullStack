@@ -1,0 +1,56 @@
+<%- include('template/cabecera',{tituloweb: 'Mascotas', paginaActual:
+'mascotas'}) %>
+
+<div class="container">
+    <h1 class="display-5 mt-4" >Animales ingresados</h1>
+    <a class="btn btn-success btn-lg w-100 my-4" href="/mascotas/crear">
+        Crear nueva Mascota
+    </a>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Ubicación</th>
+                <th scope="col">Médico</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Motivo Ingreso</th>
+                <th scope="col">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% let medicoAtiende = 0; 
+      if (arrayMascotas.length > 0) { %>
+                <%
+          arrayMascotas.forEach(mascota => { %>
+                    <tr>
+                        <td><%= mascota.nombre %></td>
+                        <td><%= mascota.descripcion %></td>
+                        <td>
+                            <% arraySalas.forEach(sala => { %>
+                                <% if (sala.codigo == mascota.ubicacion) { %>
+                                    <%= sala.nombre %>
+                                <% } %>
+                            <% }) %>
+                        </td>
+                        <td>
+                            <% arrayPersonas.forEach(persona => { %>
+                                <% if (persona.cedula == mascota.medicoAtiende) { %>
+                                    <%= persona.nombre %>
+                                <% } %>
+                            <% }) %>
+                        </td>
+                        <td><%= mascota.edad %></td>
+                        <td><%= mascota.motivoIngreso %></td>
+                        <td>
+                            <a href="/mascotas/<%= mascota.id %>" class="btn btn-warning w-100">Editar</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('template/footer') %>
