@@ -1,0 +1,106 @@
+<%- include("template/cabecera", {tituloweb: 'Detalle de mascota', paginaActual:
+'detallePersonal'}) %>
+
+<div class="container">
+  <h1 class="display-5 mt-4 mb-4">Detalle Personal Médico</h1>
+  <% if (error) { %>
+  <p><%= mensaje %></p>
+
+  <% } %> <% if (!error) { %>
+  <form id="formularioEditar" data-id="<%= persona.id %>">
+    <input
+      type="text"
+      placeholder="Cédula"
+      class="form-control my-2"
+      name="cedula"
+      value="<%= persona.cedula %>"
+      id="cedulaInput"
+    />
+    <input
+      type="text"
+      placeholder="Nombre"
+      class="form-control my-2"
+      name="nombre"
+      value="<%= persona.nombre %>"
+      id="nombreInput"
+    />
+
+    <input
+      type="text"
+      placeholder="Apellido"
+      class="form-control my-2"
+      name="apellido"
+      value="<%= persona.apellido %>"
+      id="apellidoInput"
+    />
+
+    <button class="btn btn-warning w-100 mt-2" type="submit">
+      Guardar Cambios
+    </button>
+  </form>
+  <hr />
+  <button
+    class="btn btn-danger btn-sm mt-2 w-100"
+    id="btnEliminar"
+    data-id="<%= persona.id %>"
+  >
+    Eliminar
+  </button>
+  <% } %>
+  <a href="/personal" class="btn btn-outline-secondary mt-2 w-100">Cancelar</a>
+ 
+</div>
+
+<%- include("template/footer") %>
+
+<script>
+  const btnEliminar = document.querySelector("#btnEliminar");
+  btnEliminar.addEventListener("click", async () => {
+    console.log("me diste click");
+    const id = btnEliminar.dataset.id;
+    console.log("id", id);
+    try {
+      const data = await fetch(`/personal/${id}`, {
+        method: "delete",
+      });
+      const res = await data.json();
+
+      if (res.estado) {
+        window.location.href = "/personal";
+      } else {
+        console.log(res);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  });
+  const formularioEditar = document.querySelector("#formularioEditar");
+  formularioEditar.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const cedula = formularioEditar.elements["cedula"].value;
+    const nombre = document.querySelector("#nombreInput").value;
+    const apellido = document.querySelector("#apellidoInput").value;
+    const id = formularioEditar.dataset.id;
+
+    try {
+      const data = await fetch(`/personal/${id}`, {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ cedula, nombre, apellido }),
+      });
+      const res = await data.json();
+      //console.log(res);
+
+      if (res.estado) {
+        window.location.href = "/personal";
+      } else {
+        console.log(res);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  });
+</script>

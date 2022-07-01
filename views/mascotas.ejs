@@ -2,7 +2,7 @@
 'mascotas'}) %>
 
 <div class="container">
-    <h1 class="display-5 mt-4" >Animales ingresados</h1>
+    <h1 class="display-5 mt-4" >Animales en atención</h1>
     <a class="btn btn-success btn-lg w-100 my-4" href="/mascotas/crear">
         Crear nueva Mascota
     </a>
@@ -16,7 +16,9 @@
                 <th scope="col">Médico</th>
                 <th scope="col">Edad</th>
                 <th scope="col">Motivo Ingreso</th>
-                <th scope="col">Acción</th>
+                <th scope="col">Fecha de ingreso</th>
+                <th scope="col">Fecha de salida</th>
+                <th scope="col">Historia Clínica</th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +27,8 @@
                 <%
           arrayMascotas.forEach(mascota => { %>
                     <tr>
-                        <td><%= mascota.nombre %></td>
+                        
+                        <td><a href="/mascotas/<%= mascota.id %>" class="btn btn-primary w-100"><%= mascota.nombre %></a></td>
                         <td><%= mascota.descripcion %></td>
                         <td>
                             <% arraySalas.forEach(sala => { %>
@@ -43,8 +46,11 @@
                         </td>
                         <td><%= mascota.edad %></td>
                         <td><%= mascota.motivoIngreso %></td>
+                        <td><%= mascota.fechaIngreso %></td>
+                        <td><%= mascota.fechaSalida %></td>
+
                         <td>
-                            <a href="/mascotas/<%= mascota.id %>" class="btn btn-warning w-100">Editar</a>
+                            <a href="/mascotas/historiaClinica/<%= mascota.id %>" class="btn btn-warning w-100">Ver</a>
                         </td>
                     </tr>
                 <% }) %>

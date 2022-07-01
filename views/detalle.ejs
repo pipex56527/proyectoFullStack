@@ -42,7 +42,17 @@
     </select>
  
     <select name="medicoAtiendeSelect" id="medicoAtiendeSelect" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-      <option selected value=" <%= mascota.medicoAtiende %>  ">Cambiar Médico Asignado</option>
+      <option selected value="<%= mascota.medicoAtiende %>">Cambiar Médico [ Actual: 
+        
+        <% persona.forEach(persona => { %>
+         <% if (persona.cedula == mascota.medicoAtiende) { %>
+          <%= persona.nombre %> 
+         <% } %>
+        <% }) %>
+        
+        ]</option>
+      
+      
       <% persona.forEach(persona => { %>
 
       <option value="<%= persona.cedula %> "><%= persona.nombre %> </option>
@@ -65,6 +75,23 @@
       value="<%= mascota.motivoIngreso %>"
       id="motivoIngresoInput"
     />
+    <input
+    type="text"
+    placeholder="Fecha de Ingreso"
+    class="form-control my-2"
+    name="fechaIngreso"
+    value="<%= mascota.fechaIngreso %>"
+    id="fechaIngresoInput"
+  />
+
+  <input
+  type="text"
+  placeholder="Fecha de Salida"
+  class="form-control my-2"
+  name="fechaSalida"
+  value="<%= mascota.fechaSalida %>"
+  id="fechaSalidaInput"
+/>
     <button class="btn btn-warning w-100 mt-2" type="submit">
       Guardar Cambios
     </button>
@@ -115,6 +142,8 @@
     const medicoAtiende = document.querySelector("#medicoAtiendeSelect").value;
     const edad = document.querySelector("#edadInput").value;
     const motivoIngreso = document.querySelector("#motivoIngresoInput").value;
+    const fechaIngreso = document.querySelector("#fechaIngresoInput").value;
+    const fechaSalida = document.querySelector("#fechaSalidaInput").value;
     const id = formularioEditar.dataset.id;
 
     try {
@@ -123,7 +152,16 @@
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ nombre, descripcion, ubicacion, medicoAtiende, edad, motivoIngreso }),
+        body: JSON.stringify({ 
+          nombre, 
+          descripcion, 
+          ubicacion, 
+          medicoAtiende, 
+          edad, 
+          motivoIngreso,
+          fechaIngreso,
+          fechaSalida
+        }),
       });
       const res = await data.json();
       //console.log(res);

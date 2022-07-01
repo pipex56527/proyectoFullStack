@@ -14,6 +14,8 @@
                <a class="nav-link" href="/">Inicio</a>
           <% } %>
         </li>
+
+        <% if (usuarioBD.rol == 200) { %>
         <li class="nav-item">
           <% if (paginaInvocada=='servicios') { %>
                <a class="nav-link active" aria-current="page" href="/servicios">Servicios</a>
@@ -21,6 +23,9 @@
                <a class="nav-link" href="/servicios">Servicios</a>
           <% } %>
         </li>
+        <% } %>
+
+        <% if (usuarioBD.rol == 100 || usuarioBD.rol == 200) { %>
         <li class="nav-item">
           <% if (paginaInvocada=='mascotas') { %>
                 <a class="nav-link active" aria-current="page" href="/mascotas">Mascotas</a>
@@ -28,6 +33,9 @@
                 <a class="nav-link" href="/mascotas">Mascotas</a>
           <% } %>
         </li>
+        <% } %>
+
+        <% if (usuarioBD.rol == 200) { %>
         <li class="nav-item">
           <% if (paginaInvocada=='noexiste') { %>
                 <a class="nav-link active" aria-current="page" href="/noexiste">404</a>
@@ -35,13 +43,21 @@
                 <a class="nav-link" href="/noexiste">404</a>
           <% } %>
         </li>
+        <% } %>
+
+
+        <% if (usuarioBD.rol == 200) { %>     
         <li class="nav-item">
-          <% if (paginaInvocada=='acercade') { %>
+          <% if (paginaInvocada=='personal') { %>
                 <a class="nav-link active" aria-current="page" href="/personal">Personal</a>
           <% } else { %>
                 <a class="nav-link" href="/personal">Personal</a>
           <% } %>
         </li>
+        <% } %>
+
+
+        <% if (usuarioBD.rol == 200) { %>
         <li class="nav-item">
           <% if (paginaInvocada=='acercade') { %>
                 <a class="nav-link active" aria-current="page" href="/acercade">Acerca de</a>
@@ -49,6 +65,9 @@
                 <a class="nav-link" href="/acercade">Acerca de</a>
           <% } %>
         </li> 
+        <% } %>
+
+
       </ul>
 <!--       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />

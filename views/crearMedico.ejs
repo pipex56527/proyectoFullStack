@@ -1,0 +1,33 @@
+<%- include('template/cabecera',{tituloweb: 'Crear nueva Mascota', paginaActual:
+'crear'}) %>
+
+<div class="container">
+  <h1 class="display-4 mt-4 mb-4">Dar de alta nuevo Personal Médico</h1>
+  <form action="/personal/crearMedico" method="POST">
+    <input
+      type="text"
+      placeholder="Agregar Cedula"
+      class="form-control my-2"
+      name="cedula"
+    />
+    <input
+      type="text"
+      placeholder="Agregar Nombre"
+      class="form-control my-2"
+      name="nombre"
+    />
+
+    <input
+      type="text"
+      placeholder="Agregar Apellido"
+      class="form-control my-2"
+      name="apellido"
+    />
+
+    <button class="btn btn-primary btn-lg w-100 mt-5" type="submit">
+      Agregar Personal Médico
+    </button>
+  </form>
+</div>
+
+<%- include('template/footer') %>

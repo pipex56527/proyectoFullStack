@@ -1,0 +1,80 @@
+<%- include('template/cabecera',{tituloweb: 'Mascotas', paginaActual:
+'historiaClinica'}) %>
+
+<div class="container">
+  <h1 class="display-5 mt-4">Historia Clínica</h1>
+
+  <div class="container">
+    <h1 class="display-6 mt-4 mb-4">Nuevo registro en la historia Clínica</h1>
+    <form action="/mascotas/historiaClinica" method="POST">
+      <input
+        type="text"
+        placeholder="Fecha efectiva del Registro"
+        class="form-control my-2"
+        name="fechaRegistro"
+      />
+      <input type="hidden" name="idMascota" value="<%= mascota.id %> " />
+
+      <select
+        name="medico"
+        id="medicoAtiendeSelect"
+        class="form-select form-select-sm mb-3"
+        aria-label=".form-select-sm example"
+      >
+        <option selected value="<%= mascota.medicoAtiende %>">
+          Seleccionar Médico [ Actual: <% persona.forEach(persona => { %> <% if
+          (persona.cedula == mascota.medicoAtiende) { %> <%= persona.nombre %>
+          <% } %> <% }) %> ]
+        </option>
+
+        <% persona.forEach(persona => { %>
+
+        <option value="<%= persona.cedula %> "><%= persona.nombre %></option>
+        <% }) %>
+      </select>
+
+      <textarea
+        class="form-control"
+        id="descripcion"
+        name="descripcion"
+        rows="3"
+        placeholder="Historia Clinica"
+      ></textarea>
+
+      <button class="btn btn-primary btn-lg w-100 mt-5 mb-5" type="submit">
+        Agregar Registro a la Historia Clínica
+      </button>
+    </form>
+  </div>
+
+  <h1 class="display-5 mt-4">Registro</h1>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Nombre de la Mascota</th>
+        <th scope="col">Fecha de Registro</th>
+        <th scope="col">Médico que realizó el registro</th>
+        <th scope="col">Historia</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% let medicoAtiende = 0; if (historiaClinica.length > 0) { %> <%
+      historiaClinica.forEach(historia => { %>
+      <tr>
+        <td><%= mascota.nombre %></td>
+
+        <td><%= historia.fechaRegistro %></td>
+
+        <td>
+          <% persona.forEach(persona => { %> <% if (persona.cedula ==
+          historia.medico) { %> <%= persona.nombre %> <% } %> <% }) %>
+        </td>
+
+        <td><%= historia.descripcion %></td>
+      </tr>
+      <% }) %> <% } %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('template/footer') %>

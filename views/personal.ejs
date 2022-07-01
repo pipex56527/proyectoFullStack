@@ -4,7 +4,7 @@
   <h1 class="display-5 mt-4">Personal</h1>
   <a 
       class="btn btn-success btn-lg w-100 my-4"
-      href="/personalX/crear"
+      href="/personal/crearMedico"
   > 
      Crear nueva Persona 
   </a>
@@ -27,7 +27,7 @@
         <td><%= personal.cedula %></td>
         <td><%= personal.nombre %></td>
         <td><%= personal.apellido %></td>
-        <td><a href="/personalX/<%= personal.id %>" class="btn btn-warning w-100">Editar</a></td>
+        <td><a href="/personal/<%= personal.id %>" class="btn btn-warning w-100">Editar</a></td>
       </tr>
       <% }) %> <% } %>
     </tbody>

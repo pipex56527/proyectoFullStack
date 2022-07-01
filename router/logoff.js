@@ -21,7 +21,8 @@ router.get('/', async (req, res) => {
         req.session.destroy();
         res.render('index', {
             inicioSesionRespuesta: true,
-            mensajeLogin: "logoff"
+            mensajeLogin: "logoff",
+            usuarioBD: {rol: 0} 
         })
     }
 })

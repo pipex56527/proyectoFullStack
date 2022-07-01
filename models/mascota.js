@@ -7,7 +7,9 @@ const mascotaSchema = new Schema({
     ubicacion: String,
     medicoAtiende: Number,
     edad: Number,
-    motivoIngreso: String
+    motivoIngreso: String,
+    fechaIngreso: Date,
+    fechaSalida: Date
 });
 
 // crear modelo => Se crea en mongoDB como schema='mascotas' o sea le agrega la s
