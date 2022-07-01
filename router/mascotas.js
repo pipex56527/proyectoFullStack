@@ -153,7 +153,7 @@ router.get('/historiaClinica/:id', async(req, res) => {
         const mascotaDB = await Mascota.findOne({ _id: id });
         const personaDB = await Personal.find();
         const salaDB = await Sala.find();
-        //console.log("ID buscado: " + id);
+        console.log("ID buscado: " + id + ".");
         const historiaClinicaDB = await HistoriaClinica.find({ idMascota: id });
         // console.log("Historia: " + historiaClinicaDB);
         //console.log(personaDB);
@@ -186,7 +186,7 @@ router.post('/historiaClinica', async(req, res) => {
         //console.log("Mascota creada:\n" + mascotaDB); */
 
         //Metodo 2
-        console.log("Medico: " + body.medico);
+        body.idMascota=(body.idMascota).trim();
         await HistoriaClinica.create(body);
 
         //redirige a la pagina de historia clinica
