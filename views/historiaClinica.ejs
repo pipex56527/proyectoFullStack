@@ -7,12 +7,18 @@
   <div class="container">
     <h1 class="display-6 mt-4 mb-4">Nuevo registro en la historia Clínica</h1>
     <form action="/mascotas/historiaClinica" method="POST">
-      <input
-        type="text"
-        placeholder="Fecha efectiva del Registro"
-        class="form-control my-2"
-        name="fechaRegistro"
-      />
+
+
+      <label class="font-weight-light" for="fechaRegistro">Fecha efectiva del Registro</label>
+      <input 
+      type="date" 
+      id="fechaRegistro" 
+      name="fechaRegistro"      
+      class="form-control my-2"
+      min="2000-01-01" max="2100-12-31"
+      >
+
+      
       <input type="hidden" name="idMascota" value="<%= mascota.id %> " />
 
       <select
@@ -45,6 +51,11 @@
         Agregar Registro a la Historia Clínica
       </button>
     </form>
+
+
+
+
+
   </div>
 
   <h1 class="display-5 mt-4">Registro</h1>
@@ -58,13 +69,13 @@
       </tr>
     </thead>
     <tbody>
-      <% if (historiaClinica.length > 0) 
+      <% var options = {weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12:"false"}; 
+      if (historiaClinica.length > 0) 
         { %> <% historiaClinica.forEach(historia => { %>
 
           <tr>
            <td><%= mascota.nombre %></td>
-           <td><%= historia.fechaRegistro %> </td>
-           <td>
+           <td><%= historia.fechaRegistro.toLocaleDateString("es-ES", options) %>  <td>
             <% persona.forEach(persona => { %>
                 <% if (persona.cedula == historia.medico) { %>
                     <%= persona.nombre %>

@@ -22,7 +22,8 @@
             </tr>
         </thead>
         <tbody>
-            <% let medicoAtiende = 0; 
+            <% let medicoAtiende = 0;
+            var options = {weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12:"false"}; 
       if (arrayMascotas.length > 0) { %>
                 <%
           arrayMascotas.forEach(mascota => { %>
@@ -46,8 +47,17 @@
                         </td>
                         <td><%= mascota.edad %></td>
                         <td><%= mascota.motivoIngreso %></td>
-                        <td><%= mascota.fechaIngreso %></td>
-                        <td><%= mascota.fechaSalida %></td>
+                        <td>
+                            <% if (mascota.fechaIngreso != null) { %>
+                             <%= mascota.fechaIngreso.toLocaleDateString("es-ES", options) %> 
+                            <% } %>
+
+                        </td>
+                        <td>
+                            <% if (mascota.fechaSalida != null) { %>
+                                <%= mascota.fechaSalida.toLocaleDateString("es-ES", options) %> 
+                               <% } %>
+                        </td>
 
                         <td>
                             <a href="/mascotas/historiaClinica/<%= mascota.id %>" class="btn btn-warning w-100">Ver</a>

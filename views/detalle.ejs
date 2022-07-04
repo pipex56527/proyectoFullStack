@@ -75,23 +75,28 @@
       value="<%= mascota.motivoIngreso %>"
       id="motivoIngresoInput"
     />
-    <input
-    type="text"
-    placeholder="Fecha de Ingreso"
-    class="form-control my-2"
-    name="fechaIngreso"
-    value="<%= mascota.fechaIngreso %>"
-    id="fechaIngresoInput"
-  />
 
-  <input
-  type="text"
-  placeholder="Fecha de Salida"
-  class="form-control my-2"
-  name="fechaSalida"
-  value="<%= mascota.fechaSalida %>"
-  id="fechaSalidaInput"
-/>
+    <label class="font-weight-light" for="fechaIngresoInput">Fecha de Ingreso</label>
+    <input 
+    type="date" 
+    id="fechaIngresoInput" 
+    value="<%= mascota.fechaIngreso %> "
+    name="fechaIngresoInput"      
+    class="form-control my-2"
+    min="2000-01-01" max="2100-12-31"
+    >
+
+    <label class="font-weight-light" for="fechaSalidaInput">Fecha de Salida</label>
+    <input 
+    type="date" 
+    id="fechaSalidaInput" 
+    value="<%= mascota.fechaSalida %> "
+    name="fechaSalidaInput"      
+    class="form-control my-2"
+    min="2000-01-01" max="2100-12-31"
+    >
+
+
     <button class="btn btn-warning w-100 mt-2" type="submit">
       Guardar Cambios
     </button>
