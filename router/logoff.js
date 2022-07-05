@@ -12,7 +12,8 @@ router.get('/', async (req, res) => {
     if (!req.session.usuario) {
         res.render('index', {
             inicioSesionRespuesta: false,
-            mensajeLogin: "Antes debería auntenticarse, deje de ser descarad@."
+            mensajeLogin: "Antes debería auntenticarse.",
+            usuarioBD: {rol: 0} 
         })
     } else {
 

@@ -16,11 +16,22 @@
         null;
       };
     </script>
-    <style>
-      body {
-        background-image: url("https://images3.alphacoders.com/716/716166.jpg");
-      }
-    </style>
+
+    <% if (paginaActual=='inicio') { %>
+      <style>
+        body {
+          background-image: url("https://images3.alphacoders.com/716/716166.jpg");
+        }
+      </style>
+    
+    <% } else { %>
+      <style>
+        body {
+    background: linear-gradient(#f3f767, #eae9e5) fixed;
+}
+      </style>
+      <% } %>
+
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/194/194279.png">
   </head>
   <body class="d-flex flex-column min-vh-100">

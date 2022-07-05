@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const funcGlobales = require('./funcionesGlobales');
 
 router.get('/', (req,res) => {
     res.render('index',{
@@ -15,10 +16,13 @@ router.get('/', (req,res) => {
 })
 
 router.get('/servicios', (req,res) => {
+    let rolPermitido = 200;
+    if (funcGlobales.validarSesion(req, res, rolPermitido)) {
     res.render('servicios', {
         tituloServicios: "Bienvenid@ esta es una página a tu disposición",
         usuarioBD: {rol: req.session.rol} 
     })
+}
 })
 
 module.exports = router;

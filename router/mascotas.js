@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const funcGlobales = require('./funcionesGlobales');
+const rolPermitido = 100;
 
 const Mascota = require("../models/mascota");
 const Personal = require("../models/personal");
@@ -7,12 +9,7 @@ const Sala = require("../models/sala");
 const HistoriaClinica = require("../models/historiaClinica");
 
 router.get("/", async (req, res) => {
-    if (!req.session.usuario) {
-        res.render("index", {
-            inicioSesionRespuesta: false,
-            mensajeLogin: "Antes debería auntenticarse, deje de ser descarad@.",
-        });
-    } else {
+    if (funcGlobales.validarSesion(req, res, rolPermitido)) {
         try {
             const arrayMascotasDB = await Mascota.find();
             const arrayPersonasDB = await Personal.find();
@@ -34,6 +31,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/crear", async (req, res) => {
+    if (funcGlobales.validarSesion(req, res, rolPermitido)) {
     try {
         const arrayPersonasDB = await Personal.find();
         const arraySalasDB = await Sala.find();
@@ -47,9 +45,11 @@ router.get("/crear", async (req, res) => {
     } catch (error) {
         console.log(error);
     }
+}
 });
 
 router.post("/", async (req, res) => {
+    if (funcGlobales.validarSesion(req, res, rolPermitido)) {
     const body = req.body;
     //console.log(body);
     try {
@@ -66,9 +66,11 @@ router.post("/", async (req, res) => {
     } catch (error) {
         console.log("Se ha presentado un error al guardar en la BD: " + error);
     }
+}
 });
 
 router.get("/:id", async (req, res) => {
+    if (funcGlobales.validarSesion(req, res, rolPermitido)) {
     const id = req.params.id;
 
     try {
@@ -93,9 +95,11 @@ router.get("/:id", async (req, res) => {
             mensaje: "No se encuentra el id seleccionado.",
         });
     }
+}
 });
 
 router.delete("/:id", async (req, res) => {
+    if (funcGlobales.validarSesion(req, res, rolPermitido)) {
     const id = req.params.id;
 
     try {
@@ -116,10 +120,12 @@ router.delete("/:id", async (req, res) => {
     } catch (error) {
         console.log("Se presentó un error al eliminar una mascota:\n" + error);
     }
+}
 });
 
 //Actualiza la informacion de una mascota
 router.put("/:id", async (req, res) => {
+    if (funcGlobales.validarSesion(req, res, rolPermitido)) {
     const id = req.params.id;
     const body = req.body;
 
@@ -183,10 +189,12 @@ router.put("/:id", async (req, res) => {
             mensaje: "Mascota no Editada ;(!",
         });
     }
+}
 });
 
 //renderiza la vista de historia Clinica
 router.get("/historiaClinica/:id", async (req, res) => {
+    if (funcGlobales.validarSesion(req, res, rolPermitido)) {
     const id = req.params.id;
 
     try {
@@ -221,9 +229,11 @@ router.get("/historiaClinica/:id", async (req, res) => {
             mensaje: "La mascota no posee historia clínica o no se puede visualizar.",
         });
     }
+}
 });
 
 router.post("/historiaClinica", async (req, res) => {
+    if (funcGlobales.validarSesion(req, res, rolPermitido)) {
     const body = req.body;
     //console.log(body);
     try {
@@ -256,6 +266,7 @@ router.post("/historiaClinica", async (req, res) => {
     } catch (error) {
         console.log("Se ha presentado un error al guardar en la BD: " + error);
     }
+}
 });
 
 module.exports = router;
