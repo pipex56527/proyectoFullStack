@@ -24,38 +24,39 @@
       value="<%= mascota.descripcion %>"
       id="descripcionInput"
     />
-    <select name="ubicacionSelect" id="ubicacionSelect" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-      <option selected value="<%= mascota.ubicacion %>">Cambiar Ubicacion [ Actual: 
-        
-        <% sala.forEach(sala => { %>
-         <% if (sala.codigo == mascota.ubicacion) { %>
-          <%= sala.nombre %> 
-         <% } %>
-        <% }) %>
-        
-        ]</option>
+    <select
+      name="ubicacionSelect"
+      id="ubicacionSelect"
+      class="form-select form-select-sm mb-3"
+      aria-label=".form-select-sm example"
+    >
+      <option selected value="<%= mascota.ubicacion %>">
+        Cambiar Ubicacion [ Actual: <% sala.forEach(sala => { %> <% if
+        (sala.codigo == mascota.ubicacion) { %> <%= sala.nombre %> <% } %> <% })
+        %> ]
+      </option>
 
       <% sala.forEach(sala => { %>
 
-      <option value="<%= sala.codigo %> "><%= sala.nombre %> </option>
+      <option value="<%= sala.codigo %> "><%= sala.nombre %></option>
       <% }) %>
     </select>
- 
-    <select name="medicoAtiendeSelect" id="medicoAtiendeSelect" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
-      <option selected value="<%= mascota.medicoAtiende %>">Cambiar Médico [ Actual: 
-        
-        <% persona.forEach(persona => { %>
-         <% if (persona.cedula == mascota.medicoAtiende) { %>
-          <%= persona.nombre %> 
-         <% } %>
-        <% }) %>
-        
-        ]</option>
-      
-      
+
+    <select
+      name="medicoAtiendeSelect"
+      id="medicoAtiendeSelect"
+      class="form-select form-select-sm mb-3"
+      aria-label=".form-select-sm example"
+    >
+      <option selected value="<%= mascota.medicoAtiende %>">
+        Cambiar Médico [ Actual: <% persona.forEach(persona => { %> <% if
+        (persona.cedula == mascota.medicoAtiende) { %> <%= persona.nombre %> <%
+        } %> <% }) %> ]
+      </option>
+
       <% persona.forEach(persona => { %>
 
-      <option value="<%= persona.cedula %> "><%= persona.nombre %> </option>
+      <option value="<%= persona.cedula %> "><%= persona.nombre %></option>
       <% }) %>
     </select>
 
@@ -76,26 +77,43 @@
       id="motivoIngresoInput"
     />
 
-    <label class="font-weight-light" for="fechaIngresoInput">Fecha de Ingreso</label>
-    <input 
-    type="date" 
-    id="fechaIngresoInput" 
-    value="<%= mascota.fechaIngreso %> "
-    name="fechaIngresoInput"      
-    class="form-control my-2"
-    min="2000-01-01" max="2100-12-31"
-    >
 
-    <label class="font-weight-light" for="fechaSalidaInput">Fecha de Salida</label>
-    <input 
-    type="date" 
-    id="fechaSalidaInput" 
-    value="<%= mascota.fechaSalida %> "
-    name="fechaSalidaInput"      
-    class="form-control my-2"
-    min="2000-01-01" max="2100-12-31"
+    <% let objetoFechaIngreso = new Date(mascota.fechaIngreso); 
+    let fechaIngreso =
+    objetoFechaIngreso.getFullYear().toString().padStart(4, '0') + "-" +
+    objetoFechaIngreso.getMonth().toString().padStart(2, '0') + "-" +
+    objetoFechaIngreso.getDate().toString().padStart(2, '0');
+    //console.log("fechaSalida: "+ fechaSalida) %>
+    <label class="font-weight-light" for="fechaIngresoInput"
+      >Fecha de Ingreso</label
     >
+    <input
+      type="date"
+      id="fechaIngresoInput"
+      value="<%= fechaIngreso %>"
+      name="fechaIngresoInput"
+      class="form-control my-2"
+      min="2000-01-01"
+      max="2100-12-31"
+    />
 
+    <% let objetoFechaSalida = new Date(mascota.fechaSalida); let fechaSalida =
+    objetoFechaSalida.getFullYear().toString().padStart(4, '0') + "-" +
+    objetoFechaSalida.getMonth().toString().padStart(2, '0') + "-" +
+    objetoFechaSalida.getDate().toString().padStart(2, '0');
+    console.log("fechaSalida: "+ fechaSalida) %>
+    <label class="font-weight-light" for="fechaSalidaInput"
+      >Fecha de Salida</label
+    >
+    <input
+      type="date"
+      id="fechaSalidaInput"
+      value="<%= fechaSalida %>"
+      name="fechaSalidaInput"
+      class="form-control my-2"
+      min="2000-01-01"
+      max="2100-12-31"
+    />
 
     <button class="btn btn-warning w-100 mt-2" type="submit">
       Guardar Cambios
@@ -111,7 +129,6 @@
   </button>
   <% } %>
   <a href="/mascotas" class="btn btn-outline-secondary mt-2 w-100">Cancelar</a>
- 
 </div>
 
 <%- include("template/footer") %>
@@ -157,15 +174,15 @@
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ 
-          nombre, 
-          descripcion, 
-          ubicacion, 
-          medicoAtiende, 
-          edad, 
+        body: JSON.stringify({
+          nombre,
+          descripcion,
+          ubicacion,
+          medicoAtiende,
+          edad,
           motivoIngreso,
           fechaIngreso,
-          fechaSalida
+          fechaSalida,
         }),
       });
       const res = await data.json();

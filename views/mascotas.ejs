@@ -4,7 +4,7 @@
 <div class="container">
     <h1 class="display-5 mt-4" >Animales en atención</h1>
     <a class="btn btn-success btn-lg w-100 my-4" href="/mascotas/crear">
-        Crear nueva Mascota
+        Alta de nueva Mascota
     </a>
 
     <table class="table table-hover">
@@ -23,13 +23,17 @@
         </thead>
         <tbody>
             <% let medicoAtiende = 0;
-            var options = {weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12:"false"}; 
+            var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"}; 
       if (arrayMascotas.length > 0) { %>
                 <%
           arrayMascotas.forEach(mascota => { %>
                     <tr>
-                        
-                        <td><a href="/mascotas/<%= mascota.id %>" class="btn btn-primary w-100"><%= mascota.nombre %></a></td>
+                        <% if (mascota.ubicacion == 1) { %>
+                            <td><a href="/mascotas/<%= mascota.id %>" class="btn btn-secondary w-100"><%= mascota.nombre %></a></td>
+                            <% } else { %>
+                                <td><a href="/mascotas/<%= mascota.id %>" class="btn btn-primary w-100"><%= mascota.nombre %></a></td>
+
+                                <% } %>
                         <td><%= mascota.descripcion %></td>
                         <td>
                             <% arraySalas.forEach(sala => { %>
@@ -60,7 +64,7 @@
                         </td>
 
                         <td>
-                            <a href="/mascotas/historiaClinica/<%= mascota.id %>" class="btn btn-warning w-100">Ver</a>
+                            <a href="/mascotas/historiaClinica/<%= mascota.id %>" class="btn btn-warning w-100">HC</a>
                         </td>
                     </tr>
                 <% }) %>

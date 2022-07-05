@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EJS - <%= tituloweb %></title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetsPots Veterinaria</title>
 
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <script type="text/javascript">
-        function disableBack() { window.history.forward(); }
-        setTimeout("disableBack()", 0);
-        window.onunload = function () { null };
+      function disableBack() {
+        window.history.forward();
+      }
+      setTimeout("disableBack()", 0);
+      window.onunload = function () {
+        null;
+      };
     </script>
-</head>
-<body class="d-flex flex-column min-vh-100">
-    <%- include('navbar', {paginaInvocada: paginaActual})%>  
+    <style>
+      body {
+        background-image: url("https://images3.alphacoders.com/716/716166.jpg");
+      }
+    </style>
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/194/194279.png">
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <%- include('navbar', {paginaInvocada: paginaActual})%>
+  </body>
+</html>
