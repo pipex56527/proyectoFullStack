@@ -77,13 +77,13 @@
       id="motivoIngresoInput"
     />
 
+    <% 
+    let fechaIngresoTextoAnio = mascota.fechaIngreso.toString().substring(0,4); 
+    let fechaIngresoTextoMes = mascota.fechaIngreso.toString().substring(4,6);
+    let fechaIngresoTextoDia = mascota.fechaIngreso.toString().substring(6,8); 
+    let fechaIngreso = fechaIngresoTextoAnio+"-"+fechaIngresoTextoMes+"-"+fechaIngresoTextoDia 
+    %>
 
-    <% let objetoFechaIngreso = new Date(mascota.fechaIngreso); 
-    let fechaIngreso =
-    objetoFechaIngreso.getFullYear().toString().padStart(4, '0') + "-" +
-    objetoFechaIngreso.getMonth().toString().padStart(2, '0') + "-" +
-    objetoFechaIngreso.getDate().toString().padStart(2, '0');
-    //console.log("fechaSalida: "+ fechaSalida) %>
     <label class="font-weight-light" for="fechaIngresoInput"
       >Fecha de Ingreso</label
     >
@@ -97,11 +97,18 @@
       max="2100-12-31"
     />
 
-    <% let objetoFechaSalida = new Date(mascota.fechaSalida); let fechaSalida =
-    objetoFechaSalida.getFullYear().toString().padStart(4, '0') + "-" +
-    objetoFechaSalida.getMonth().toString().padStart(2, '0') + "-" +
-    objetoFechaSalida.getDate().toString().padStart(2, '0');
-    console.log("fechaSalida: "+ fechaSalida) %>
+    <% if(mascota.fechaSalida!=null && mascota.fechaSalida != undefined &&
+           mascota.fechaSalida!=0){
+           
+           let fechaSalidaTextoAnio = mascota.fechaSalida.toString().substring(0,4); 
+           let fechaSalidaTextoMes = mascota.fechaSalida.toString().substring(4,6); 
+           let fechaSalidaTextoDia = mascota.fechaSalida.toString().substring(6,8); 
+           let fechaSalida = fechaSalidaTextoAnio+"-"+fechaSalidaTextoMes+"-"+fechaSalidaTextoDia
+        } else {
+          fechaSalida = 0;
+        }
+           
+    %>
     <label class="font-weight-light" for="fechaSalidaInput"
       >Fecha de Salida</label
     >

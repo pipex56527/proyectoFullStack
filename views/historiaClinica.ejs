@@ -2,7 +2,7 @@
 'historiaClinica'}) %>
 
 <div class="container">
-  <h1 class="display-5 mt-4">Historia Clínica</h1>
+  <h1 class="display-5 mt-4">Historia Clínica de <%= mascota.nombre %> </h1>
 
   <div class="container">
     <h1 class="display-6 mt-4 mb-4">Nuevo registro en la historia Clínica</h1>
@@ -69,13 +69,25 @@
       </tr>
     </thead>
     <tbody>
-      <% var options = {weekday: "long", year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12:"false"}; 
+      <%
       if (historiaClinica.length > 0) 
         { %> <% historiaClinica.forEach(historia => { %>
 
           <tr>
            <td><%= mascota.nombre %></td>
-           <td><%= historia.fechaRegistro.toLocaleDateString("es-ES", options) %>  <td>
+
+           <td>
+            <%
+            let fechaRegistroTextoFormato=
+                                historia.fechaRegistro.toString().substring(0,4)+"-"+
+                                historia.fechaRegistro.toString().substring(4,6)+"-"+
+                                historia.fechaRegistro.toString().substring(6,8)
+            
+            %>
+            <%= fechaRegistroTextoFormato %> 
+           <td>
+
+
             <% persona.forEach(persona => { %>
                 <% if (persona.cedula == historia.medico) { %>
                     <%= persona.nombre %>

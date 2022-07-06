@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const historiaClinicaSchema = new Schema({
-    fechaRegistro: Date,
+    fechaRegistro: Number,
     idMascota: String,
     medico: Number,
     descripcion: String

@@ -16,18 +16,28 @@
       class="form-control my-2"
       name="descripcion"
     />
-    <select name="ubicacion" id="ubicacionSelect" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+    <select
+      name="ubicacion"
+      id="ubicacionSelect"
+      class="form-select form-select-sm mb-3"
+      aria-label=".form-select-sm example"
+    >
       <option selected>Agregar Ubicación</option>
       <% arraySalas.forEach(sala => { %>
 
-      <option value="<%= sala.codigo %> "><%= sala.nombre %> </option>
+      <option value="<%= sala.codigo %> "><%= sala.nombre %></option>
       <% }) %>
     </select>
-    <select name="medicoAtiende" id="medicoAtiendeSelect" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+    <select
+      name="medicoAtiende"
+      id="medicoAtiendeSelect"
+      class="form-select form-select-sm mb-3"
+      aria-label=".form-select-sm example"
+    >
       <option selected>Agregar un Médico</option>
       <% arrayPersonas.forEach(persona => { %>
 
-      <option value="<%= persona.cedula %> "><%= persona.nombre %> </option>
+      <option value="<%= persona.cedula %> "><%= persona.nombre %></option>
       <% }) %>
     </select>
     <input
@@ -42,20 +52,20 @@
       class="form-control my-2"
       name="motivoIngreso"
     />
-    <label class="font-weight-light" for="fechaSalidaInput">Fecha de Ingreso</label>
-    <input 
-    type="date" 
-    id="fechaIngreso" 
-    name="fechaIngreso"      
-    class="form-control my-2"
-    min="2000-01-01" max="2100-12-31"
+    <label class="font-weight-light" for="fechaSalidaInput"
+      >Fecha de Ingreso</label
     >
-
     <input
-    type="hidden"
-    name="fechaSalida"
-    >
-  
+      type="date"
+      id="fechaIngreso"
+      name="fechaIngreso"
+      class="form-control my-2"
+      min="2000-01-01"
+      max="2100-12-31"
+    />
+
+    <input type="hidden" name="fechaSalida" />
+
     <button class="btn btn-primary btn-lg w-100 mt-5" type="submit">
       Agregar Mascota
     </button>

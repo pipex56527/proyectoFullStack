@@ -23,7 +23,7 @@
         </thead>
         <tbody>
             <% let medicoAtiende = 0;
-            var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"}; 
+            //var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"}; 
       if (arrayMascotas.length > 0) { %>
                 <%
           arrayMascotas.forEach(mascota => { %>
@@ -52,15 +52,28 @@
                         <td><%= mascota.edad %></td>
                         <td><%= mascota.motivoIngreso %></td>
                         <td>
-                            <% if (mascota.fechaIngreso != null) { %>
-                             <%= mascota.fechaIngreso.toLocaleDateString("es-ES", options) %> 
-                            <% } %>
+                            <% if (mascota.fechaIngreso != null) { 
+                                let fechaIngresoTextoFormato=
+                                     mascota.fechaIngreso.toString().substring(0,4)+"-"+
+                                     mascota.fechaIngreso.toString().substring(4,6)+"-"+
+                                     mascota.fechaIngreso.toString().substring(6,8)%>
+
+                                     <%= fechaIngresoTextoFormato %> 
+                          <% } %>
+                          
 
                         </td>
                         <td>
-                            <% if (mascota.fechaSalida != null) { %>
-                                <%= mascota.fechaSalida.toLocaleDateString("es-ES", options) %> 
-                               <% } %>
+                            <% if (mascota.fechaSalida != null && mascota.fechaSalida != 0) { 
+                                let fechaSalidaTextoFormato=
+                                mascota.fechaSalida.toString().substring(0,4)+"-"+
+                                mascota.fechaSalida.toString().substring(4,6)+"-"+
+                                mascota.fechaSalida.toString().substring(6,8) %>
+
+                                <%= fechaSalidaTextoFormato %> 
+                     <% } else{%>
+                        <%= "Activo" %> 
+                        <%} %>
                         </td>
 
                         <td>
