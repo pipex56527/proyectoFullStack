@@ -15,6 +15,8 @@ router.get('/', (req,res) => {
     
 })
 
+
+
 router.get('/servicios', (req,res) => {
     let rolPermitido = 200;
     if (funcGlobales.validarSesion(req, res, rolPermitido)) {

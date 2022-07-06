@@ -32,7 +32,12 @@ const session = require('express-session');
 app.use(session({
     secret: '2C44-4D44-WppQ38Ssj773jh.09',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {
+ 
+        // Session expires after 3 min of inactivity. [1 min = 60.000]
+        expires: 180000
+    }
 }));
 
 //Parsea formularios
