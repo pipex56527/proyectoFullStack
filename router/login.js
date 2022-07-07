@@ -37,6 +37,7 @@ router.post('/', async (req, res) => {
             req.session.usuario = usuarioIngresado;
             req.session.contrasenia = "Hacker no tienes la contrasenia?";
             req.session.rol = usuarioBD.rol;
+            req.session.nombre = usuarioBD.nombre;
 
             //console.log("Rol: " + req.session.rol);
 

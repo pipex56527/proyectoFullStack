@@ -4,18 +4,30 @@
 <div class="container">
   <h1 class="display-4 mt-4 mb-4">Dar de alta nuevo paciente</h1>
   <form action="/mascotas" method="POST">
+
+    <div class="form-floating mb-3">
     <input
       type="text"
       placeholder="Agregar Nombre"
       class="form-control my-2"
       name="nombre"
+      id="nombre"
     />
+    <label for="nombre">Nombre</label>
+  </div>
+  
+  <div class="form-floating mb-3">
     <input
       type="text"
       placeholder="Agregar Descripción"
       class="form-control my-2"
       name="descripcion"
+      id="descripcion"
     />
+    <label for="descripcion">Descripción</label>
+  </div>
+
+  <div class="form-floating mb-3">
     <select
       name="ubicacion"
       id="ubicacionSelect"
@@ -28,6 +40,10 @@
       <option value="<%= sala.codigo %> "><%= sala.nombre %></option>
       <% }) %>
     </select>
+    <label for="ubicacionSelect">Ubicación</label>
+  </div>
+
+  <div class="form-floating mb-3">
     <select
       name="medicoAtiende"
       id="medicoAtiendeSelect"
@@ -40,21 +56,33 @@
       <option value="<%= persona.cedula %> "><%= persona.nombre %></option>
       <% }) %>
     </select>
+    <label for="medicoAtiendeSelect">Médico que atiende</label>
+  </div>
+
+
+  <div class="form-floating mb-3">
     <input
       type="text"
       placeholder="Agregar edad"
       class="form-control my-2"
       name="edad"
+      id="edad"
     />
+    <label for="edad">Edad</label>
+  </div>
+
+  <div class="form-floating mb-3">
     <input
       type="text"
       placeholder="Motivo de Ingreso"
       class="form-control my-2"
       name="motivoIngreso"
+      id="motivoIngreso"
     />
-    <label class="font-weight-light" for="fechaSalidaInput"
-      >Fecha de Ingreso</label
-    >
+    <label for="edad">Motivo de Ingreso</label>
+  </div>
+
+  <div class="form-floating mb-3">
     <input
       type="date"
       id="fechaIngreso"
@@ -63,12 +91,15 @@
       min="2000-01-01"
       max="2100-12-31"
     />
+    <label for="fechaIngreso">Fecha de Ingreso</label>
+  </div>
 
     <input type="hidden" name="fechaSalida" />
 
     <button class="btn btn-primary btn-lg w-100 mt-5" type="submit">
       Agregar Mascota
     </button>
+    <a href="/mascotas" class="btn btn-outline-secondary mt-2 w-100">Cancelar</a>
   </form>
 </div>
 

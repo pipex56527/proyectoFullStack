@@ -138,6 +138,10 @@ router.put("/:id", async (req, res) => {
            
             body.fechaSalida = (body.fechaSalida.replace(/[-]/g,''));
      
+            //se actualiza la sala a verde dado que se registra una fecha de salida
+            if( body.fechaSalida!=0 && body.fechaSalida!=null) {
+                body.ubicacion=1
+            }
 
             const mascotaDB = await Mascota.findByIdAndUpdate(id, body, {
                 useFindAndModify: false,

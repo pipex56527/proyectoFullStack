@@ -1,13 +1,15 @@
 <%- include("template/cabecera", {tituloweb: 'Detalle de mascota', paginaActual:
 'detalle'}) %>
 
-<div class="container">
+<div class="container mb-5">
   <h1 class="display-5 mt-4 mb-4">Detalle Mascota</h1>
   <% if (error) { %>
   <p><%= mensaje %></p>
 
   <% } %> <% if (!error) { %>
   <form id="formularioEditar" data-id="<%= mascota.id %>">
+
+    <div class="form-floating mb-3">
     <input
       type="text"
       placeholder="Nombre"
@@ -16,6 +18,10 @@
       value="<%= mascota.nombre %>"
       id="nombreInput"
     />
+    <label for="nombreInput">Nombre</label>
+  </div>
+
+  <div class="form-floating mb-3">
     <input
       type="text"
       placeholder="Descripción"
@@ -24,6 +30,10 @@
       value="<%= mascota.descripcion %>"
       id="descripcionInput"
     />
+    <label for="descripcionInput">Descripción</label>
+  </div>
+
+  <div class="form-floating mb-3">
     <select
       name="ubicacionSelect"
       id="ubicacionSelect"
@@ -41,7 +51,10 @@
       <option value="<%= sala.codigo %> "><%= sala.nombre %></option>
       <% }) %>
     </select>
+    <label for="ubicacionSelect">Ubicación</label>
+  </div>
 
+  <div class="form-floating mb-3">
     <select
       name="medicoAtiendeSelect"
       id="medicoAtiendeSelect"
@@ -59,7 +72,10 @@
       <option value="<%= persona.cedula %> "><%= persona.nombre %></option>
       <% }) %>
     </select>
+    <label for="medicoAtiendeSelect">Médico que atiende</label>
+  </div>
 
+  <div class="form-floating mb-3">
     <input
       type="text"
       placeholder="Edad"
@@ -68,6 +84,10 @@
       value="<%= mascota.edad %>"
       id="edadInput"
     />
+    <label for="edadInput">Edad</label>
+  </div>
+
+  <div class="form-floating mb-3">
     <input
       type="text"
       placeholder="Motivo de Ingreso"
@@ -76,6 +96,8 @@
       value="<%= mascota.motivoIngreso %>"
       id="motivoIngresoInput"
     />
+    <label for="motivoIngresoInput">Motivo de Ingreso</label>
+  </div>
 
     <% 
     let fechaIngresoTextoAnio = mascota.fechaIngreso.toString().substring(0,4); 
@@ -84,43 +106,54 @@
     let fechaIngreso = fechaIngresoTextoAnio+"-"+fechaIngresoTextoMes+"-"+fechaIngresoTextoDia 
     %>
 
-    <label class="font-weight-light" for="fechaIngresoInput"
-      >Fecha de Ingreso</label
-    >
-    <input
+    <div class="form-floating mb-3">
+     
+      <input
       type="date"
       id="fechaIngresoInput"
       value="<%= fechaIngreso %>"
       name="fechaIngresoInput"
-      class="form-control my-2"
+      class="form-control"
       min="2000-01-01"
       max="2100-12-31"
     />
+      <label for="fechaIngresoInput">Fecha de Ingreso</label>
+    </div>
+    
 
-    <% if(mascota.fechaSalida!=null && mascota.fechaSalida != undefined &&
+
+
+    <% 
+    //console.log("mascota.fechaSalida: " + mascota.fechaSalida);
+    let fechaSalida=-1;
+
+    if(mascota.fechaSalida!=null && mascota.fechaSalida != undefined &&
            mascota.fechaSalida!=0){
            
            let fechaSalidaTextoAnio = mascota.fechaSalida.toString().substring(0,4); 
            let fechaSalidaTextoMes = mascota.fechaSalida.toString().substring(4,6); 
            let fechaSalidaTextoDia = mascota.fechaSalida.toString().substring(6,8); 
-           let fechaSalida = fechaSalidaTextoAnio+"-"+fechaSalidaTextoMes+"-"+fechaSalidaTextoDia
+           fechaSalida = fechaSalidaTextoAnio+"-"+fechaSalidaTextoMes+"-"+fechaSalidaTextoDia
         } else {
           fechaSalida = 0;
         }
            
     %>
-    <label class="font-weight-light" for="fechaSalidaInput"
-      >Fecha de Salida</label
-    >
-    <input
+
+    <div class="form-floating mb-3">
+     
+      <input
       type="date"
       id="fechaSalidaInput"
       value="<%= fechaSalida %>"
       name="fechaSalidaInput"
-      class="form-control my-2"
+      class="form-control"
       min="2000-01-01"
       max="2100-12-31"
     />
+      <label for="fechaSalidaInput">Fecha de Salida</label>
+    </div>
+
 
     <button class="btn btn-warning w-100 mt-2" type="submit">
       Guardar Cambios

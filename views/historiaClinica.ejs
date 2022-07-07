@@ -1,105 +1,159 @@
 <%- include('template/cabecera',{tituloweb: 'Mascotas', paginaActual:
 'historiaClinica'}) %>
 
-<div class="container">
-  <h1 class="display-5 mt-4">Historia Clínica de <%= mascota.nombre %> </h1>
+<div class="container mb-5">
+  <h1 class="display-5 mt-4">Historia Clínica de <%= mascota.nombre %></h1>
 
-  <div class="container">
-    <h1 class="display-6 mt-4 mb-4">Nuevo registro en la historia Clínica</h1>
-    <form action="/mascotas/historiaClinica" method="POST">
-
-
-      <label class="font-weight-light" for="fechaRegistro">Fecha efectiva del Registro</label>
-      <input 
-      type="date" 
-      id="fechaRegistro" 
-      name="fechaRegistro"      
-      class="form-control my-2"
-      min="2000-01-01" max="2100-12-31"
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseTwo"
+          aria-expanded="false"
+          aria-controls="collapseTwo"
+        >
+          Dar de alta un nuevo registro en la historia Clínica
+        </button>
+      </h2>
+      <div
+        id="collapseTwo"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingTwo"
+        data-bs-parent="#accordionExample"
       >
+        <div class="accordion-body">
+          <div class="container">
+            <h1 class="display-6 mt-4 mb-4">
+              Nuevo registro en la historia Clínica
+            </h1>
+            <form action="/mascotas/historiaClinica" method="POST">
+              <div class="form-floating mb-3">
+                <input
+                  type="date"
+                  id="fechaRegistro"
+                  name="fechaRegistro"
+                  class="form-control my-2"
+                  min="2000-01-01"
+                  max="2100-12-31"
+                />
+                <label for="fechaRegistro">Fecha efectiva del Registro</label>
+              </div>
 
-      
-      <input type="hidden" name="idMascota" value="<%= mascota.id %> " />
+              <input
+                type="hidden"
+                name="idMascota"
+                value="<%= mascota.id %> "
+              />
 
-      <select
-        name="medico"
-        id="medicoAtiendeSelect"
-        class="form-select form-select-sm mb-3"
-        aria-label=".form-select-sm example"
-      >
-        <option selected value="<%= mascota.medicoAtiende %>">
-          Seleccionar Médico [ Actual: <% persona.forEach(persona => { %> <% if
-          (persona.cedula == mascota.medicoAtiende) { %> <%= persona.nombre %>
-          <% } %> <% }) %> ]
-        </option>
+              <div class="form-floating mb-3">
+                <select
+                  name="medico"
+                  id="medicoAtiendeSelect"
+                  class="form-select form-select-sm mb-3"
+                  aria-label=".form-select-sm example"
+                >
+                  <option selected value="<%= mascota.medicoAtiende %>">
+                    Seleccionar Médico [ Actual: <% persona.forEach(persona => {
+                    %> <% if (persona.cedula == mascota.medicoAtiende) { %> <%=
+                    persona.nombre %> <% } %> <% }) %> ]
+                  </option>
 
-        <% persona.forEach(persona => { %>
+                  <% persona.forEach(persona => { %>
 
-        <option value="<%= persona.cedula %> "><%= persona.nombre %></option>
-        <% }) %>
-      </select>
-
-      <textarea
-        class="form-control"
-        id="descripcion"
-        name="descripcion"
-        rows="3"
-        placeholder="Historia Clinica"
-      ></textarea>
-
-      <button class="btn btn-primary btn-lg w-100 mt-5 mb-5" type="submit">
-        Agregar Registro a la Historia Clínica
-      </button>
-    </form>
-
-
-
-
-
-  </div>
-
-  <h1 class="display-5 mt-4">Registro</h1>
-  <table class="table table-hover table-dark mb-5">
-    <thead>
-      <tr>
-        <th scope="col">Nombre de la Mascota</th>
-        <th scope="col">Fecha de Registro</th>
-        <th scope="col">Médico que realizó el registro</th>
-        <th scope="col">Historia</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%
-      if (historiaClinica.length > 0) 
-        { %> <% historiaClinica.forEach(historia => { %>
-
-          <tr>
-           <td><%= mascota.nombre %></td>
-
-           <td>
-            <%
-            let fechaRegistroTextoFormato=
-                                historia.fechaRegistro.toString().substring(0,4)+"-"+
-                                historia.fechaRegistro.toString().substring(4,6)+"-"+
-                                historia.fechaRegistro.toString().substring(6,8)
-            
-            %>
-            <%= fechaRegistroTextoFormato %> 
-           <td>
-
-
-            <% persona.forEach(persona => { %>
-                <% if (persona.cedula == historia.medico) { %>
+                  <option value="<%= persona.cedula %> ">
                     <%= persona.nombre %>
-                <% } %>
-            <% }) %>
-          </td>
-           <td><%= historia.descripcion %></td>
-          </tr>
+                  </option>
+                  <% }) %>
+                </select>
+                <label for="medicoAtiendeSelect">Médico</label>
+              </div>
 
-       <% }) %> <% } %>
-    </tbody>
-  </table>
+              <div class="form-floating">
+                <textarea
+                  class="form-control"
+                  placeholder="Historia Clínica"
+                  id="descripcion"
+                  name="descripcion"
+                  style="height: 200px"
+                ></textarea>
+                <label for="descripcion">Historia Clínica</label>
+              </div>
+
+              <button class="btn btn-primary btn-lg w-100 mt-3" type="submit">
+                Agregar Registro a la Historia Clínica
+              </button>
+              <a
+                href="/mascotas"
+                class="btn btn-outline-secondary mt-2 mb-5 w-100"
+                >Cancelar</a
+              >
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button
+          class="accordion-button"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseOne"
+          aria-expanded="true"
+          aria-controls="collapseOne"
+        >
+          Registro Histórico
+        </button>
+      </h2>
+      <div
+        id="collapseOne"
+        class="accordion-collapse collapse show"
+        aria-labelledby="headingOne"
+        data-bs-parent="#accordionExample"
+      >
+        <div class="accordion-body">
+          <h1 class="display-5 mt-4">Registro</h1>
+          <table class="table table-hover table-dark mb-5">
+            <thead>
+              <tr>
+                <th scope="col">Nombre de la Mascota</th>
+                <th scope="col">Fecha de Registro</th>
+                <th scope="col">Médico que realizó el registro</th>
+                <th scope="col">Historia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (historiaClinica.length > 0) { %> <%
+              historiaClinica.forEach(historia => { %>
+
+              <tr>
+                <td><%= mascota.nombre %></td>
+
+                <td>
+                  <% let fechaRegistroTextoFormato=
+                  historia.fechaRegistro.toString().substring(0,4)+"-"+
+                  historia.fechaRegistro.toString().substring(4,6)+"-"+
+                  historia.fechaRegistro.toString().substring(6,8) %> <%=
+                  fechaRegistroTextoFormato %>
+                </td>
+
+                <td>
+                  <% persona.forEach(persona => { %> <% if (persona.cedula ==
+                  historia.medico) { %> <%= persona.nombre %> <% } %> <% }) %>
+                </td>
+                <td><%= historia.descripcion %></td>
+              </tr>
+
+              <% }) %> <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <%- include('template/footer') %>
