@@ -7,3 +7,5 @@ https://victorroblesweb.es/2018/01/02/instalar-dependencias-con-npm-api-restful-
 
 No olvidar instalar nodemon con el comando (aunque este ya fue agregado a package.json, deberia instalarse solo)
 >> npm install nodemon --save-dev
+
+Si deseas obtener el archivo .env por favor escríbeme a pipex56527@hotmail.com
